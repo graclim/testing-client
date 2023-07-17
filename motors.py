@@ -18,7 +18,7 @@ GPIO.setup(40, GPIO.OUT) # PWM3 Right Motor
 # Create PWM Object
 top = GPIO.PWM(18, 10000)
 left = GPIO.PWM(8, 10000)
-right= GPIO.PWM(40, 10000)
+right = GPIO.PWM(40, 10000)
 
 # Start PWM generation of a specified duty cycle
 top.start(0)
