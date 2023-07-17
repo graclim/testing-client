@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 
 # import Time package
-import time as sleep
+from time import sleep
 
 # Numbers the pins from 1-40, starting from the top left then going down to the bottom right
 GPIO.setmode(GPIO.BOARD)
