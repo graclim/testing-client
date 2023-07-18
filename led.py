@@ -40,6 +40,7 @@ print("Starting LED sequence ...")
 
 try:
     while True:
+        
         red.ChangeDutyCycle(20)
         sleep(0.5)
         red.ChangeDutyCycle(0)
@@ -48,7 +49,7 @@ try:
         green.ChangeDutyCycle(5)
         sleep(0.5)
         green.ChangeDutyCycle(0)
-        sleep(0.5)
+            sleep(0.5)
 
         blue.ChangeDutyCycle(20)
         sleep(0.5)
