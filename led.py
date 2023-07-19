@@ -20,9 +20,9 @@ LEDPinGreen = 36
 LEDPinRed = 32
 
 # Create PWM Object
-blue = GPIO.PWM(LEDPinBlue, 1000)
-green = GPIO.PWM(LEDPinGreen, 1000)
-red = GPIO.PWM(LEDPinRed, 1000)
+blue = GPIO.PWM(LEDPinBlue, 500)
+green = GPIO.PWM(LEDPinGreen, 8000)
+red = GPIO.PWM(LEDPinRed, 8000)
 
 # Start PWM generation of a specified duty cycle
 blue.start(0)
@@ -41,20 +41,34 @@ print("Starting LED sequence ...")
 try:
     while True:
         
-        red.ChangeDutyCycle(20)
+        red.ChangeDutyCycle(80)
         sleep(0.5)
         red.ChangeDutyCycle(0)
         sleep(0.5)
 
-        green.ChangeDutyCycle(5)
+        green.ChangeDutyCycle(80)
         sleep(0.5)
         green.ChangeDutyCycle(0)
-            sleep(0.5)
+        sleep(0.5)
 
-        blue.ChangeDutyCycle(20)
+        blue.ChangeDutyCycle(1)
         sleep(0.5)
         blue.ChangeDutyCycle(0)
         sleep(0.5)
+        
+        red.ChangeDutyCycle(80)
+        green.ChangeDutyCycle(80)
+        blue.ChangeDutyCycle(1)
+        sleep(5)
+        
+        red.ChangeDutyCycle(0)
+        green.ChangeDutyCycle(0)
+        blue.ChangeDutyCycle(0)
+        sleep(0.5)
+        
+        
+        
+        
 
 except KeyboardInterrupt:
     print("Keyboard interrupt")

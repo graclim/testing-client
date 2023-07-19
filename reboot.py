@@ -19,7 +19,6 @@ GPIO.setup(40, GPIO.OUT) # PWM3 Right Motor
 GPIO.setup(7, GPIO.OUT)
 GPIO.setup(10, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
 GPIO.setup(29, GPIO.OUT)
 GPIO.setup(31, GPIO.OUT)
 
@@ -27,7 +26,6 @@ GPIO.setup(31, GPIO.OUT)
 GPIO.output(7, 0)
 GPIO.output(10, 0)
 GPIO.output(24, 0)
-GPIO.output(26, 0)
 GPIO.output(29, 0)
 GPIO.output(31, 0)
 
@@ -58,25 +56,45 @@ LEDPinGreen = 36
 LEDPinRed = 32
 
 # Create PWM Object for LEDs
-blue = GPIO.PWM(LEDPinBlue, 1000)
-green = GPIO.PWM(LEDPinGreen, 100)
-red = GPIO.PWM(LEDPinRed, 1000)
+blue = GPIO.PWM(LEDPinBlue, 500)
+green = GPIO.PWM(LEDPinGreen, 8000)
+red = GPIO.PWM(LEDPinRed, 8000)
 
 # Start PWM generation for LEDs of a specified duty cycle
 blue.start(0)
 green.start(0)
 red.start(0)
 
-for i in range(3):
-	red.ChangeDutyCycle(20)
-	sleep(5)
+for i in range(1):
+	red.ChangeDutyCycle(80)
+	sleep(3)
 	red.ChangeDutyCycle(0)
-	sleep(3)
+	sleep(0.5)
 	
-	green.ChangeDutyCycle(5)
-	sleep(5)
-	green.ChangeDutyCycle(0)
+	green.ChangeDutyCycle(80)
 	sleep(3)
+	green.ChangeDutyCycle(0)
+	sleep(0.5)
+	
+	blue.ChangeDutyCycle(1)
+	sleep(3)
+	blue.ChangeDutyCycle(0)
+	sleep(0.5)
+	
+	top.ChangeDutyCycle(25)
+	sleep(3)
+	top.ChangeDutyCycle(0)
+	sleep(0.5)
+	
+	left.ChangeDutyCycle(25)
+	sleep(3)
+	left.ChangeDutyCycle(0)
+	sleep(0.5)
+	
+	left.ChangeDutyCycle(25)
+	sleep(3)
+	left.ChangeDutyCycle(0)
+	sleep(0.5)
 
 top.stop()
 right.stop()
