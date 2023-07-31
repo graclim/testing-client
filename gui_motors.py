@@ -52,33 +52,56 @@ down_arrow = button.Button(500, 300, down_arrow_img, 1)
 
 #game loop
 run = True
-while run:
 
-    screen.fill((202, 228, 241))
+try:
+    while run:
 
-    if left_arrow.draw(screen):
-        left.ChangeDutyCycle(0)
-        right.ChangeDutyCycle(0)
-        print('LEFT')
-        left.ChangeDutyCycle(10)
-    if right_arrow.draw(screen):
-        left.ChangeDutyCycle(0)
-        right.ChangeDutyCycle(0)
-        print('RIGHT')
-        right.ChangeDutyCycle(10)
-    if forward_arrow.draw(screen):
-        left.ChangeDutyCycle(0)
-        right.ChangeDutyCycle(0)
-        print('FORWARD')
-        left.ChangeDutyCycle(10)
-        right.ChangeDutyCycle(10)
+        screen.fill((202, 228, 241))
 
-    # event handler
-    for event in pygame.event.get():
-        # quit game
-        if event.type == pygame.QUIT:
-            run = False
+        if left_arrow.draw(screen):
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
+            print('LEFT')
+            left.ChangeDutyCycle(10)
+        if right_arrow.draw(screen):
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
+            print('RIGHT')
+            right.ChangeDutyCycle(10)
+        if forward_arrow.draw(screen):
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
+            print('FORWARD')
+            left.ChangeDutyCycle(10)
+            right.ChangeDutyCycle(10)
+        if up_arrow.draw(screen):
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
+            print('UP')
+            top.ChangeDutyCycle(20)
+        if down_arrow.draw(screen):
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
+            print('DOWN')
+            top.ChangeDutyCycle(5)
 
-    pygame.display.update()
+        # event handler
+        for event in pygame.event.get():
+            # quit game
+            if event.type == pygame.QUIT:
+                run = False
 
-pygame.quit()
+        pygame.display.update()
+
+except KeyboardInterrupt:
+    print("clean up")
+    top.stop()
+    left.stop()
+    right.stop()
+    GPIO.cleanup()
+    pygame.quit()
