@@ -1,5 +1,5 @@
-# IMPORTS
-# import RPi.GPIO as GPIO
+# -------------------- IMPORTS --------------------
+import RPi.GPIO as GPIO
 import socket
 import pygame
 from pygame.locals import *
@@ -7,52 +7,52 @@ import time
 import pygame
 import button
 
-# # Setting GPIO pins to be referred to their BOARD number (1-40)
-# GPIO.setmode(GPIO.BOARD)
+# Setting GPIO pins to be referred to their BOARD number (1-40)
+GPIO.setmode(GPIO.BOARD)
 
-# # Disable warnings
-# GPIO.setwarnings(False)	
+# Disable warnings
+GPIO.setwarnings(False)	
 
 # -------------------- MOTORS --------------------
 
-# # Setting up the GPIO pins
-# GPIO.setup(18, GPIO.OUT) # top
-# GPIO.setup(8, GPIO.OUT)  # left
-# GPIO.setup(40, GPIO.OUT) # right
+# Setting up the GPIO pins
+GPIO.setup(18, GPIO.OUT) # top
+GPIO.setup(8, GPIO.OUT)  # left
+GPIO.setup(40, GPIO.OUT) # right
 
-# # Setting frequency (frequency of PWM / How long one period is)
-# freq1 = freq2 = freq3 = 1000
+# Setting frequency (frequency of PWM / How long one period is)
+freq1 = freq2 = freq3 = 1000
 
-# # Create PWM Object
-# top = GPIO.PWM(18, freq1)
-# left = GPIO.PWM(8, freq2)
-# right = GPIO.PWM(40, freq3)
+# Create PWM Object
+top = GPIO.PWM(18, freq1)
+left = GPIO.PWM(8, freq2)
+right = GPIO.PWM(40, freq3)
 
-# # Start PWM generation of a specified duty cycle
-# top.start(0)
-# left.start(0)
-# right.start(0)
+# Start PWM generation of a specified duty cycle
+top.start(0)
+left.start(0)
+right.start(0)
 
 # -------------------- LED --------------------
 
-# # Setting up the GPIO pins
-# GPIO.setup(26, GPIO.OUT) # LED Blue
-# GPIO.setup(36, GPIO.OUT) # LED Green
-# GPIO.setup(32, GPIO.OUT) # LED Red
+# Setting up the GPIO pins
+GPIO.setup(26, GPIO.OUT) # LED Blue
+GPIO.setup(36, GPIO.OUT) # LED Green
+GPIO.setup(32, GPIO.OUT) # LED Red
 
-# LEDPinBlue = 26
-# LEDPinGreen = 36
-# LEDPinRed = 32
+LEDPinBlue = 26
+LEDPinGreen = 36
+LEDPinRed = 32
 
-# # Create PWM Object
-# blue = GPIO.PWM(LEDPinBlue, 1000)
-# green = GPIO.PWM(LEDPinGreen, 1000)
-# red = GPIO.PWM(LEDPinRed, 1000)
+# Create PWM Object
+blue = GPIO.PWM(LEDPinBlue, 1000)
+green = GPIO.PWM(LEDPinGreen, 1000)
+red = GPIO.PWM(LEDPinRed, 1000)
 
-# # Start PWM generation of a specified duty cycle
-# blue.start(0)
-# green.start(0)
-# red.start(0)
+# Start PWM generation of a specified duty cycle
+blue.start(0)
+green.start(0)
+red.start(0)
 
 # -------------------- SETTING UP GUI --------------------
 
@@ -197,9 +197,9 @@ try:
                 projector = True
                 print('PROJECTOR ON')
                 projector_button = button.Button(600, 250, projector_img_on, 0.5)
-                # red.ChangeDutyCycle(20)
-                # green.ChangeDutyCycle(20)
-                # blue.ChangeDutyCycle(20)
+                red.ChangeDutyCycle(20)
+                green.ChangeDutyCycle(20)
+                blue.ChangeDutyCycle(20)
 
         # -------------------- IF EXTRA OFF BUTTONS ARE PRESSED --------------------
         if apriltags_button_off.draw(screen):
@@ -220,42 +220,42 @@ try:
                 projector = False
                 print('PROJECTOR OFF')
                 projector_button = button.Button(600, 250, projector_img_off, 0.5)
-                # red.ChangeDutyCycle(0)
-                # green.ChangeDutyCycle(0)
-                # blue.ChangeDutyCycle(0)
+                red.ChangeDutyCycle(0)
+                green.ChangeDutyCycle(0)
+                blue.ChangeDutyCycle(0)
         
         # -------------------- IF ARROW BUTTONS ARE PRESSED --------------------
         if left_arrow.draw(screen):
-            # top.ChangeDutyCycle(0)
-            # left.ChangeDutyCycle(0)
-            # right.ChangeDutyCycle(0)
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
             print('LEFT')
-            # left.ChangeDutyCycle(10)
+            left.ChangeDutyCycle(10)
         if right_arrow.draw(screen):
-            # top.ChangeDutyCycle(0)
-            # left.ChangeDutyCycle(0)
-            # right.ChangeDutyCycle(0)
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
             print('RIGHT')
-            # right.ChangeDutyCycle(10)
+            right.ChangeDutyCycle(10)
         if forward_arrow.draw(screen):
-            # top.ChangeDutyCycle(0)
-            # left.ChangeDutyCycle(0)
-            # right.ChangeDutyCycle(0)
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
             print('FORWARD')
-            # left.ChangeDutyCycle(10)
-            # right.ChangeDutyCycle(10)
+            left.ChangeDutyCycle(10)
+            right.ChangeDutyCycle(10)
         if up_arrow.draw(screen):
-            # top.ChangeDutyCycle(0)
-            # left.ChangeDutyCycle(0)
-            # right.ChangeDutyCycle(0)
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
             print('UP')
-            # top.ChangeDutyCycle(20)
+            top.ChangeDutyCycle(20)
         if down_arrow.draw(screen):
-            # top.ChangeDutyCycle(0)
-            # left.ChangeDutyCycle(0)
-            # right.ChangeDutyCycle(0)
+            top.ChangeDutyCycle(0)
+            left.ChangeDutyCycle(0)
+            right.ChangeDutyCycle(0)
             print('DOWN')
-            # top.ChangeDutyCycle(5)
+            top.ChangeDutyCycle(5)
         
         # -------------------- IF EXIT BUTTON IS PRESSED --------------------
         if exit_button.draw(screen):
@@ -271,8 +271,8 @@ try:
 
 except KeyboardInterrupt:
     print("CLEANUP")
-    # top.stop()
-    # left.stop()
-    # right.stop()
-    # GPIO.cleanup()
+    top.stop()
+    left.stop()
+    right.stop()
+    GPIO.cleanup()
     pygame.quit()
