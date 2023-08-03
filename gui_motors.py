@@ -93,6 +93,10 @@ apriltags_img_off = pygame.image.load('buttons/button_apriltags_off.png').conver
 tof_img_off = pygame.image.load('buttons/button_tof_off.png').convert_alpha()
 projector_img_off = pygame.image.load('buttons/button_projector_off.png').convert_alpha()
 
+# Camera - ON and OFF
+camera_img_off = pygame.image.load('buttons/button_camera_off.png').convert_alpha()
+camera_img_on = pygame.image.load('buttons/button_camera_on.png').convert_alpha()
+
 # On and Off Images
 button_on = pygame.image.load('buttons/button_on.png').convert_alpha()
 button_off = pygame.image.load('buttons/button_off.png').convert_alpha()
@@ -119,6 +123,9 @@ apriltags_button = button.Button(600, 100, apriltags_img_off, 0.5)
 tof_button = button.Button(600, 175, tof_img_off, 0.5)
 projector_button = button.Button(600, 250, projector_img_off, 0.5)
 
+# Camera Buttons
+camera_button = button.Button(600, 325, camera_img_off, 0.5)
+
 # Extra Buttons - ON
 apriltags_button_on = button.Button(720, 100, button_on, 0.5)
 tof_button_on = button.Button(720, 175, button_on, 0.5)
@@ -129,10 +136,15 @@ apriltags_button_off = button.Button(770, 100, button_off, 0.5)
 tof_button_off = button.Button(770, 175, button_off, 0.5)
 projector_button_off = button.Button(770, 250, button_off, 0.5)
 
+# Camera Buttons - On and Off
+camera_button_on = button.Button(720, 325, button_on, 0.5)
+camera_button_off = button.Button(770, 325, button_off, 0.5)
+
 # If the extra buttons are on or off. by default, they are off
 apriltags = False
 tof = False
 projector = False
+camera = False
 
 run = True
 
@@ -155,30 +167,24 @@ try:
 
         # -------------------- IF MODE BUTTONS ARE PRESSED --------------------
         if manual_button.draw(screen):
-            # print('MANUAL')
             manual_button = button.Button(100, 400, manual_img_on, 0.5)
             waypoint_button = button.Button(200, 400, waypoint_img_off, 0.5)
             auto_button = button.Button(300, 400, auto_img_off, 0.5)
         if waypoint_button.draw(screen):
-            # print('WAYPOINT')
             manual_button = button.Button(100, 400, manual_img_off, 0.5)
             waypoint_button = button.Button(200, 400, waypoint_img_on, 0.5)
             auto_button = button.Button(300, 400, auto_img_off, 0.5)
         if auto_button.draw(screen):
-            # print('AUTO')
             manual_button = button.Button(100, 400, manual_img_off, 0.5)
             waypoint_button = button.Button(200, 400, waypoint_img_off, 0.5)
             auto_button = button.Button(300, 400, auto_img_on, 0.5)
 
         # -------------------- IF EXTRA BUTTONS ARE PRESSED --------------------
         if apriltags_button.draw(screen):
-            # print('APRIL TAGS')
             continue
         if tof_button.draw(screen):
-            # print('TIME OF FLIGHT SENSORS')
             continue
         if projector_button.draw(screen):
-            # print('PROJECTOR')
             continue
 
         # -------------------- IF EXTRA ON BUTTONS ARE PRESSED --------------------
@@ -203,19 +209,16 @@ try:
 
         # -------------------- IF EXTRA OFF BUTTONS ARE PRESSED --------------------
         if apriltags_button_off.draw(screen):
-            # print('APRIL TAGS OFF')
             if apriltags == True:
                 apriltags = False
                 print('APRIL TAGS OFF')
                 apriltags_button = button.Button(600, 100, apriltags_img_off, 0.5)
         if tof_button_off.draw(screen):
-            # print('TIME OF FLIGHT SENSORS OFF')
             if tof == True:
                 tof = False
                 print('TIME OF FLIGHT SENSORS OFF')
                 tof_button = button.Button(600, 175, tof_img_off, 0.5)
         if projector_button_off.draw(screen):
-            # print('PROJECTOR OFF')
             if projector == True:
                 projector = False
                 print('PROJECTOR OFF')
@@ -224,6 +227,20 @@ try:
                 green.ChangeDutyCycle(0)
                 blue.ChangeDutyCycle(0)
         
+        # -------------------- IF CAMERA BUTTONS ARE PRESSED --------------------
+        if camera_button.draw(screen):
+            continue
+        if camera_button_off.draw(screen):
+            if camera == True:
+                camera = False
+                print('CAMERA OFF')
+                camera_button = button.Button(600, 325, camera_img_off, 0.5)
+        if camera_button_on.draw(screen):
+            if camera == False:
+                camera = True
+                print('CAMERA ON')    
+                camera_button = button.Button(600, 325, camera_img_on, 0.5) 
+
         # -------------------- IF ARROW BUTTONS ARE PRESSED --------------------
         if left_arrow.draw(screen):
             top.ChangeDutyCycle(0)
@@ -256,7 +273,7 @@ try:
             right.ChangeDutyCycle(0)
             print('DOWN')
             top.ChangeDutyCycle(5)
-        
+
         # -------------------- IF EXIT BUTTON IS PRESSED --------------------
         if exit_button.draw(screen):
             raise Exception("EXIT")
