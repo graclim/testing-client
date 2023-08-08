@@ -1,8 +1,8 @@
 # USAGE
-# python detect_apriltag.py --image images/example_01.png
+# python3 apriltag.py --image example_01.png
 
 # import the necessary packages
-import apriltag
+import pupil-apriltags
 print("1")
 import argparse
 print("2")
@@ -23,8 +23,8 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # define the AprilTags detector options and then detect the AprilTags
 # in the input image
 print("[INFO] detecting AprilTags...")
-options = apriltag.DetectorOptions(families="tag36h11")
-detector = apriltag.Detector(options)
+options = pupil-apriltags.DetectorOptions(families="tag36h11")
+detector = pupil-apriltags.Detector(options)
 results = detector.detect(gray)
 print("[INFO] {} total AprilTags detected".format(len(results)))
 
