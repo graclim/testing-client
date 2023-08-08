@@ -1,5 +1,5 @@
 # -------------------- IMPORTS --------------------
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import socket
 import pygame
 from pygame.locals import *
@@ -145,7 +145,7 @@ camera_button_on = button.Button(720, 325, button_on, 0.5)
 camera_button_off = button.Button(770, 325, button_off, 0.5)
 
 # Take Photo Button
-take_photo_button = button.Button(770, 325, button_off, 0.5)
+take_photo_button = button.Button(600, 400, button_take_photo, 0.5)
 
 # If the extra buttons are on or off. by default, they are off
 apriltags = False
@@ -255,13 +255,11 @@ try:
 
         # -------------------- IF TAKE PHOTO BUTTON IS PRESSED --------------------
         if take_photo_button.draw(screen):
-            if cameraOnOff == False:
-                print('CAMERA IS NOT ON. UNABLE TO TAKE PHOTO')
-            else: # cameraOnOff == True
-                cameraOnOff.
-
+            if cameraOnOff == True:
+                camera.capture("test.jpg")
                 print('PHOTO TAKEN')
-
+            else:
+                print('CAMERA IS NOT ON. UNABLE TO TAKE PHOTO')
         
         # -------------------- IF ARROW BUTTONS ARE PRESSED --------------------
         if left_arrow.draw(screen):
