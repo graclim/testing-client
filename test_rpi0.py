@@ -251,7 +251,7 @@ try:
                 cameraOnOff = True
                 print('CAMERA ON')    
                 camera_button = button.Button(600, 325, camera_img_on, 0.5)
-                camera.start_preview()
+                camera.start_preview(fullscreen=False, window=(100, 200, 300, 400))
 
         # -------------------- IF TAKE PHOTO BUTTON IS PRESSED --------------------
         if take_photo_button.draw(screen):

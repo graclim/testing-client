@@ -2,31 +2,28 @@
 # python3 apriltag.py --image example_01.png
 
 # import the necessary packages
-import pupil-apriltags
+import pupil_apriltags
 print("1")
-import argparse
-print("2")
 import cv2
 print("3")
 
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to input image containing AprilTag")
-args = vars(ap.parse_args())
-
 # load the input image and convert it to grayscale
 print("[INFO] loading image...")
-image = cv2.imread(args["image"])
+image = cv2.imread("first.png")
+print("5")
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+print("6")
 
 # define the AprilTags detector options and then detect the AprilTags
 # in the input image
 print("[INFO] detecting AprilTags...")
-options = pupil-apriltags.DetectorOptions(families="tag36h11")
-detector = pupil-apriltags.Detector(options)
+options = pupil_apriltags.DetectorOptions(families="tag36h11")
+print("7")
+detector = pupil_apriltags.Detector(options)
+print("8")
 results = detector.detect(gray)
-print("[INFO] {} total AprilTags detected".format(len(results)))
+print("9")
+#print("[INFO] {} total AprilTags detected".format(len(results)))
 
 # loop over the AprilTag detection results
 for r in results:
